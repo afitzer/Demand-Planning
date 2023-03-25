@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Fitz Forecast</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+        {% block header %}{% endblock %}
+    </head>
+    <body>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Fitz Forecast
+                    </h1>
+                    <h2 class="subtitle">
+                        A planning app for food manufacturers
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                To be an "overview & welcome" page once logged in
+                <div class="content">
+                    {% for sales in grosssales %}
+                        <p>
+                            {{ sales.customer }}
+                            <br>
+                            {{ sales.product }}<strong>: </strong>
+                            <strong>${{ sales.gross_sales }}</strong>
+                        </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
