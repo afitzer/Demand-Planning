@@ -27,9 +27,7 @@
                 <div class="content">
                     {% for sales in grosssales %}
                         <p>
-                            {{ sales.customer }}
-                            <br>
-                            {{ sales.product }}<strong>: </strong>
+                            {{ sales.product }}:
                             <strong>${{ sales.gross_sales }}</strong>
                         </p>
                     {% endfor %}
