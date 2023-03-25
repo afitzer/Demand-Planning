@@ -4,8 +4,9 @@
 # import plotly.express as px
 # from django.http import JsonResponse
 from django.shortcuts import render
-from .models import GrossSales
+from .models import GrossSales, Product
 from .forms import PlanningForm
+from django.db.models import Sum
 
 def index(request):
     grosssales = GrossSales.objects.all()
@@ -28,4 +29,5 @@ def planning(request):
     else:
         form = PlanningForm()
         data = GrossSales.objects.all()
-        return render(request, 'fitzforecast/planning.html', {'form': form, 'data': data})
+        product_sales = Product.objects.annotate(total_sales=Sum('grosssales__gross_sales')).values('description', 'total_sales')
+        return render(request, 'fitzforecast/planning.html', {'form': form, 'data': data, 'product_sales': product_sales})

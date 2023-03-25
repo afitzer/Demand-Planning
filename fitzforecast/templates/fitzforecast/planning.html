@@ -35,7 +35,7 @@
                 </div>
             </div>
         </section>
-        <section class="section">
+        <section class="section has-background-grey-lighter">
             <div class="container">
                 <h1 class="title">Food Manufacturer Demand Planning</h1>
                 <h2 class="subtitle">Enter the demand forecast for each product and customer combination:</h2>
@@ -49,22 +49,26 @@
                     <thead>
                         <tr>
                             <th>Product</th>
-                            <th>Customer</th>
-                            <th>Date</th>
-                            <th>Sales</th>
+                            <th>Total Sales</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {% for item in data %}
+                        {% for item in product_sales %}
                         <tr>
-                            <td>{{ item.product }}</td>
-                            <td>{{ item.customer }}</td>
-                            <td>{{ item.date }}</td>
-                            <td>{{ item.sales }}</td>
+                            <td>{{ item.description }}</td>
+                            <td>{{ item.total_sales }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
                 </table>
+            </div>
+            <div class="mt-5" class="container">
+                <a href="{% url 'index' %}" class="button is-light">
+                    <span class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span>Back to Index</span>
+                </a>
             </div>
         </section>
     </body>
