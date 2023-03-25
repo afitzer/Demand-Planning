@@ -10,17 +10,20 @@
             body {
                 font-family: 'Montserrat', sans-serif;
             }
-        
+
             .hero.is-primary {
                 background-color: #209CEE;
             }
-        
+
             .subtitle {
                 font-size: 24px;
                 font-weight: bold;
             }
         </style>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
     </head>
+
     <body>
         <section class="hero is-primary">
             <div class="hero-body">
@@ -35,24 +38,14 @@
             </div>
         </section>
         <section class="section has-background-grey-lighter">
-            <div class="container">
-                To be an "overview & welcome" page once logged in
-                <div class="content">
-                    <br>
-                    <a class="button is-black is-outlined" href="{% url 'planning' %}">Create New Plan</a>
-                    <a class="button is-black is-outlined" href="{% url 'reports' %}">View Reports</a>
-                    <br>
-                    <strong>{{ grosssales.customer }}</strong>
-                    <br>
-                    {% for sales in grosssales %}
-                        <p>
-                            <br>
-                            {{ sales.product }}:
-                            <strong>${{ sales.gross_sales }}</strong>
-                        </p>
-                    {% endfor %}
-                </div>
-            </div>
+            <h1 class="title is-1">Sales by Product</h1>
+            <div id="chart" class="mb-6"></div>
+            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <script>
+                // var chart_data = {{ graphJSON | safe }};
+                Plotly.plot('chart', chart_data, {});
+            </script>
         </section>
     </body>
+
 </html>
