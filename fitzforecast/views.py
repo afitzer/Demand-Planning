@@ -1,17 +1,19 @@
-# import pandas as pd
-# import json
-from plotly.utils import PlotlyJSONEncoder
-# import plotly.express as px
-# from django.http import JsonResponse
-from plotly.offline import plot
-import plotly.graph_objs as go
-from django.shortcuts import render
+from django.http import JsonResponse
 from .models import GrossSales, Product
 from .forms import PlanningForm
 from django.db.models import Sum
 from django.db.models.functions import TruncMonth
 from django.db.models import Q
 from datetime import datetime
+from django.shortcuts import render
+from plotly.offline import plot
+from django.core.serializers import serialize
+import json
+import plotly.express as px
+import plotly.graph_objs as go
+import plotly
+from django.http import HttpResponse
+
 
 current_year = datetime.now().year
 
@@ -71,13 +73,25 @@ def planning(request):
 def reports(request):
     product_sales = Product.objects.annotate(
         total_sales=Sum('grosssales__gross_sales')
-        ).values('description', 'total_sales')
+    ).values('description', 'total_sales')
 
-    data = [
-        go.Bar(
-            x=[item['description'] for item in product_sales],
-            y=[item['total_sales'] for item in product_sales]
-        )
-    ]
-    graphJSON = plot(data, output_type='json', auto_open=False)
-    return render(request, 'fitzforecast/reports.html', {'graphJSON': graphJSON})
+    x_values = []
+    y_values = []
+    for sale in product_sales:
+        x_values.append(sale['description'])
+        y_values.append(sale['total_sales'])
+
+    chart_data = {
+        'data': [{
+            'x': x_values,
+            'y': y_values,
+            'type': 'bar'
+        }],
+        'layout': {
+            'xaxis': {'title': 'description'},
+            'yaxis': {'title': 'total_sales'},
+            'title': 'Sales by Product'
+        }
+    }
+
+    return HttpResponse(json.dumps(chart_data), content_type='application/json')
