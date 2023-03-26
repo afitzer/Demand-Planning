@@ -36,18 +36,39 @@
                     </h2>
                 </div>
             </div>
+            <div class="mt-5" class="container">
+                <a href="{% url 'index' %}" class="button is-light">
+                    <span class="icon">
+                        <i class="fas fa-arrow-left"></i>
+                    </span>
+                    <span>Back to Index</span>
+                </a>
+            </div>
         </section>
         <section class="section has-background-grey-lighter">
             <h1 class="title is-1">Sales by Product</h1>
-            <div id="plot"></div>
-            
-            <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            <div><canvas id="myChart"></canvas></div>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
-                fetch("/reports/")
-                    .then(response => response.json())
-                    .then(data => {
-                        Plotly.newPlot('plot', data.data, data.layout);
-                    });
+                const ctx = document.getElementById('myChart');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['product1', 'product2', 'product3', 'product4'],
+                        datasets: [{
+                            label: 'Gross Sales',
+                            data: [300, 489, 375, 375],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
             </script>
         </section>
     </body>
