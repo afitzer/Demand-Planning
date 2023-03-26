@@ -39,11 +39,12 @@
         </section>
         <section class="section has-background-grey-lighter">
             <h1 class="title is-1">Sales by Product</h1>
-            <div id="chart" class="mb-6"></div>
+            <div id="plot" class="mb-6"></div>
             <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
             <script>
-                // var chart_data = {{ graphJSON | safe }};
-                Plotly.plot('chart', chart_data, {});
+                // var chart_data = {{ graphJSON| safe }};
+                console.log(chart_data);
+                Plotly.newPlot('plot', JSON.parse(chart_data), {});
             </script>
         </section>
     </body>

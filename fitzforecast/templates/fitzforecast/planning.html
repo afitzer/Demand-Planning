@@ -40,23 +40,72 @@
                 <h1 class="title">Food Manufacturer Demand Planning</h1>
                 <h2 class="subtitle">Enter the demand forecast for each product and customer combination:</h2>
                 <form method="POST" action="">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button class="button is-primary" type="submit">Save</button>
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">{{ field.label_tag }}</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    {{ field }}
+                                </div>
+                                {% if field.help_text %}
+                                    <p class="help">{{ field.help_text|safe }}</p>
+                                {% endif %}
+                                {% for error in field.errors %}
+                                    <p class="help is-danger">{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-primary" type="submit">Save</button>
+                        </div>
+                    </div>
                 </form>
                 <hr>
                 <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
                     <thead>
                         <tr>
+                            <th>Customer</th>
                             <th>Product</th>
                             <th>Total Sales</th>
+                            <th>Jan</th>
+                            <th>Feb</th>
+                            <th>Mar</th>
+                            <th>Apr</th>
+                            <th>May</th>
+                            <th>Jun</th>
+                            <th>Jul</th>
+                            <th>Aug</th>
+                            <th>Sep</th>
+                            <th>Oct</th>
+                            <th>Nov</th>
+                            <th>Dec</th>
                         </tr>
                     </thead>
                     <tbody>
                         {% for item in product_sales %}
                         <tr>
+                            <td>{{ item.grosssales__customer__name }}</td>
                             <td>{{ item.description }}</td>
                             <td>{{ item.total_sales }}</td>
+                            <td>{{ item.jan_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.feb_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.mar_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.apr_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.may_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.jun_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.jul_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.aug_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.sep_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.oct_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.nov_sales|default_if_none:"-" }}</td>
+                            <td>{{ item.dec_sales|default_if_none:"-" }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>
