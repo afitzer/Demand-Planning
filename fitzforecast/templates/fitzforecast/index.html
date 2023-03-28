@@ -44,7 +44,7 @@
                     <br>
                     <strong>{{ grosssales.customer }}</strong>
                     <br>
-                    {% for sales in grosssales %}
+                    {% for sales in grosssales|slice:":5" %}
                         <p>
                             <br>
                             {{ sales.product }}:
