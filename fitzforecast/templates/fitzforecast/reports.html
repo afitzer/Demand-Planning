@@ -54,10 +54,10 @@
                 new Chart(ctx, {
                     type: 'bar',
                     data: {
-                        labels: ['product1', 'product2', 'product3', 'product4'],
+                        labels: product_sales.product,
                         datasets: [{
                             label: 'Gross Sales',
-                            data: [300, 489, 375, 375],
+                            data: product_sales.gross_sales,
                             borderWidth: 1
                         }]
                     },

@@ -4,9 +4,6 @@ from django.db.models import Sum
 from django.db.models import Q
 from datetime import datetime
 from django.shortcuts import render
-import json
-from plotly.utils import PlotlyJSONEncoder
-import plotly.express as px
 
 current_year = datetime.now().year
 

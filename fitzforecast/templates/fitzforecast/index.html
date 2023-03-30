@@ -44,6 +44,7 @@
                     <br>
                     <strong>{{ grosssales.customer }}</strong>
                     <br>
+                    <!-- order by newest to oldest -->
                     {% for sales in grosssales|slice:":5" %}
                         <p>
                             <br>
