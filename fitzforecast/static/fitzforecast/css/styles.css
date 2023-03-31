@@ -1,0 +1,7 @@
+#game-canvas {
+    border: 1px solid #000;
+}
+
+.paddle {
+    background-color: #000;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Fitz Forecast</title>
+        <link rel="stylesheet" href="{% static 'fitzforecast/css/styles.css' %}">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    </head>
+    <body>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">
+                        Fitz Forecast
+                    </h1>
+                    <h2 class="subtitle">
+                        A pong game for forecasting
+                    </h2>
+                </div>
+            </div>
+        </section>
+        <section class="section has-background-grey-lighter">
+            <div class="container">
+                <div class="content">
+                    <canvas id="game-canvas"></canvas>
+                    <script src="{% static 'fitzforecast/js/game.js' %}"></script>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

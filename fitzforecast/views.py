@@ -84,3 +84,6 @@ def reports(request):
             ).values('description', 'total_sales', 'grosssales__customer__name', 'jan_sales', 'feb_sales', 'mar_sales', 'apr_sales', 'may_sales', 'jun_sales', 'jul_sales', 'aug_sales', 'sep_sales', 'oct_sales', 'nov_sales', 'dec_sales')
 
     return render(request, 'fitzforecast/reports.html', {'product_sales': product_sales})
+
+def game(request):
+    return render(request, 'fitzforecast/game.html')
