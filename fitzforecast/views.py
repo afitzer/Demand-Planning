@@ -8,7 +8,7 @@ from django.shortcuts import render
 current_year = datetime.now().year
 
 def index(request):
-    grosssales = GrossSales.objects.all()
+    grosssales = GrossSales.objects.all().order_by("-date")
     return render(request, 'fitzforecast/index.html', {'grosssales': grosssales})
 
 def planning(request):

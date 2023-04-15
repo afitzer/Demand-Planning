@@ -41,16 +41,13 @@
                     <br>
                     <a class="button is-black is-outlined" href="{% url 'planning' %}">Create and View the Plan</a>
                     <a class="button is-black is-outlined" href="{% url 'reports' %}">View Reports</a>
-                    <br>
-                    <strong>{{ grosssales.customer }}</strong>
-                    <br>
-                    <!-- order by newest to oldest -->
+                </div>
+                <div class="content">
                     {% for sales in grosssales|slice:":5" %}
-                        <p>
-                            <br>
-                            {{ sales.product }}:
-                            <strong>${{ sales.gross_sales }}</strong>
-                        </p>
+                        <strong>{{ sales.customer }}</strong>, {{ sales.date }}<br>
+                        <div class="content">
+                            {{ sales.product }}: <strong>${{ sales.gross_sales }}</strong>
+                        </div>
                     {% endfor %}
                 </div>
             </div>
