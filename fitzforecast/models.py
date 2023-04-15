@@ -27,6 +27,7 @@ class GrossSales(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     date = models.DateField()
     gross_sales = models.FloatField()
+    time_stamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.product.description + ' ' + self.customer.name + ' ' + str(self.date) + ' ' + str(self.gross_sales)

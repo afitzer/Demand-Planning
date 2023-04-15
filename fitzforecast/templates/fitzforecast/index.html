@@ -44,7 +44,7 @@
                 </div>
                 <div class="content">
                     {% for sales in grosssales|slice:":5" %}
-                        <strong>{{ sales.customer }}</strong>, {{ sales.date }}<br>
+                        <strong>{{ sales.customer }}</strong>'s Plan for {{ sales.date }} was updated on {{ sales.time_stamp }}<br>
                         <div class="content">
                             {{ sales.product }}: <strong>${{ sales.gross_sales }}</strong>
                         </div>
