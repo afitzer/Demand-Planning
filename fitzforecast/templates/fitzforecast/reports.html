@@ -47,29 +47,6 @@
         </section>
         <section class="section has-background-grey-lighter">
             <h1 class="title is-1">Sales by Product</h1>
-            <div><canvas id="myChart"></canvas></div>
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-            <script>
-                const ctx = document.getElementById('myChart');
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: product_sales.product,
-                        datasets: [{
-                            label: 'Gross Sales',
-                            data: product_sales.gross_sales,
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            </script>
         </section>
     </body>
 </html>
